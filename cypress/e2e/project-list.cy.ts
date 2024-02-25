@@ -36,6 +36,9 @@ describe("Project List", () => {
           cy.wrap($el)
             .find("a")
             .should("have.attr", "href", "/dashboard/issues");
+          cy.get(".project-card_bottomContainer__s6COr")
+            .should("have.css", "border-top-width", "1px")
+            .should("have.css", "border-top-color", "rgb(228, 231, 236)");
         });
     });
   });

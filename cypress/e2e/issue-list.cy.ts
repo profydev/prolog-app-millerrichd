@@ -47,6 +47,11 @@ describe("Issue List", () => {
           cy.wrap($el).contains(issue.numEvents);
           cy.wrap($el).contains(firstLineOfStackTrace);
         });
+      cy.get(".issue-list_pageInfo__DVGfF").should(
+        "have.css",
+        "color",
+        "rgb(52, 64, 84)",
+      );
     });
 
     it("paginates the data", () => {

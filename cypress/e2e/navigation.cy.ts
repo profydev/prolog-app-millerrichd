@@ -42,6 +42,16 @@ describe("Sidebar Navigation", () => {
       // check that text is not rendered
       cy.get("nav").contains("Issues").should("not.exist");
     });
+
+    it("should flip the arrow on collapse when collapsed", () => {
+      cy.get("img.menu-item-link_icon__WDzQ3 ").should("be.visible");
+
+      cy.get("nav").contains("Collapse").click();
+
+      cy.get(
+        "img.menu-item-link_icon__WDzQ3.menu-item-link_flipIcon__rRrzo",
+      ).should("be.visible");
+    });
   });
 
   context("mobile resolution", () => {

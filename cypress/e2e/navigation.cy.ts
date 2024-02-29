@@ -52,6 +52,25 @@ describe("Sidebar Navigation", () => {
         "img.menu-item-link_icon__WDzQ3.menu-item-link_flipIcon__rRrzo",
       ).should("be.visible");
     });
+
+    it("support button should open user default email", () => {
+      // Spy on the 'window.open' method
+      cy.window().then((win) => {
+        cy.spy(win, "open").as("open");
+      });
+
+      // Click the button that triggers the 'window.open' with a mailto link
+      cy.get("nav").contains("Support").click();
+
+      // Wait for a brief moment to allow for the window.open to take effect
+      cy.wait(500);
+
+      // Check if the 'window.open' was called with the expected mailto link
+      cy.get("@open").should(
+        "be.calledWithMatch",
+        /^mailto:support@prolog-app.com\?subject=Support%20Request%3A%20/,
+      );
+    });
   });
 
   context("mobile resolution", () => {

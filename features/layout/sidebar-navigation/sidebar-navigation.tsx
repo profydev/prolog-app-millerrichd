@@ -20,6 +20,17 @@ export function SidebarNavigation() {
   const router = useRouter();
   const { isSidebarCollapsed, toggleSidebar } = useContext(NavigationContext);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleSupportClick = () => {
+    const email = "support@prolog-app.com";
+    const subject = "Support Request: ";
+    const body = "";
+    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+    window.open(mailtoLink, "_blank");
+  };
+
   return (
     <div
       className={classNames(
@@ -84,7 +95,7 @@ export function SidebarNavigation() {
               iconSrc="/icons/support.svg"
               isCollapsed={isSidebarCollapsed}
               canFlip={false}
-              onClick={() => alert("Support")}
+              onClick={() => handleSupportClick()}
             />
             <MenuItemButton
               text="Collapse"

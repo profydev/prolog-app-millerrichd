@@ -73,6 +73,43 @@ describe("Sidebar Navigation", () => {
     });
   });
 
+  context("mobile resolution for testing icon on ipad", () => {
+    it("should use the large icon on the header when in portrait mode and not collapsed", () => {
+      cy.viewport("ipad-2", "portrait");
+      cy.get("img.sidebar-navigation_logo__LwoQa").should("be.visible");
+      cy.get("img.sidebar-navigation_logo__LwoQa").should(
+        "have.attr",
+        "src",
+        "/icons/logo-large.svg",
+      );
+    });
+    it("should use the large icon on the header when in landscape mode and not collapsed", () => {
+      cy.viewport("ipad-2", "landscape");
+      cy.get("img.sidebar-navigation_logo__LwoQa").should("be.visible");
+      cy.get("img.sidebar-navigation_logo__LwoQa").should(
+        "have.attr",
+        "src",
+        "/icons/logo-large.svg",
+      );
+    });
+    it("should use the large icon on the header when in landscape mode and collapsed", () => {
+      cy.viewport("ipad-2", "landscape");
+      cy.get("nav").contains("Collapse").click();
+      cy.get("img.sidebar-navigation_logo__LwoQa").should(
+        "have.attr",
+        "src",
+        "/icons/logo-small.svg",
+      );
+      cy.viewport("ipad-2", "portrait");
+      cy.get("img.sidebar-navigation_logo__LwoQa").should("be.visible");
+      cy.get("img.sidebar-navigation_logo__LwoQa").should(
+        "have.attr",
+        "src",
+        "/icons/logo-large.svg",
+      );
+    });
+  });
+
   context("mobile resolution", () => {
     beforeEach(() => {
       cy.viewport("iphone-8");

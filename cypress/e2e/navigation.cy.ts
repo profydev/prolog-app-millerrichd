@@ -92,7 +92,7 @@ describe("Sidebar Navigation", () => {
         "/icons/logo-large.svg",
       );
     });
-    it("should use the large icon on the header when in landscape mode and not collapsed", () => {
+    it("should use the large icon on the header when in landscape mode and collapsed", () => {
       cy.viewport("ipad-2", "landscape");
       cy.get("nav").contains("Collapse").click();
       cy.get("img.sidebar-navigation_logo__LwoQa").should(
